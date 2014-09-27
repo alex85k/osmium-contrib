@@ -4,7 +4,15 @@
 #include <fstream>
 
 #include <sys/types.h>
-#include <dirent.h>
+#ifdef _MSC_VER
+  #include "msvc_dirent.h"
+#else
+  #include <dirent.h>
+#endif
+#ifdef _WIN32
+  #include <direct.h>
+  int mkdir(const char *dir, int p) { return mkdir(dir); }
+#endif
 
 #include <osmium/area/assembler.hpp>
 #include <osmium/area/multipolygon_collector.hpp>
