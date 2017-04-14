@@ -15,6 +15,9 @@ endif()
 find_package(Osmium REQUIRED COMPONENTS io)
 include_directories(SYSTEM ${OSMIUM_INCLUDE_DIRS})
 
+#find_package(Boost REQUIRED)
+#include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
+
 include(common)
 
 enable_testing()
