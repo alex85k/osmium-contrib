@@ -19,6 +19,17 @@ include(common)
 
 enable_testing()
 
+if(MSVC)
+    find_path(GETOPT_INCLUDE_DIR getopt.h)
+    find_library(GETOPT_LIBRARY NAMES wingetopt)
+    if(GETOPT_INCLUDE_DIR AND GETOPT_LIBRARY)
+        include_directories(SYSTEM ${GETOPT_INCLUDE_DIR})
+        list(APPEND OSMIUM_LIBRARIES ${GETOPT_LIBRARY})
+    else()
+	message(WARNING "Skipping dense_tiles example: wingetopt library not found")
+    endif()
+endif()
+
 #----------------------------------------------------------------------
 
 set(PROG dense_tiles)
